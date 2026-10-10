@@ -3420,13 +3420,26 @@ html[data-theme="convex"] .metric-info-trigger[aria-expanded="true"] {
   .admin-intro,
   .editorial-hero,
   .join-page {
-    grid-template-columns: 1fr;
+    /* minmax(0, 1fr), not 1fr: 1fr is minmax(auto, 1fr), so a long headline
+       word becomes the column's minimum and the hero paints past the viewport. */
+    grid-template-columns: minmax(0, 1fr);
     align-items: start;
   }
 
+  .hero-copy,
+  .hero h1,
+  .editorial-hero h1,
+  .join-copy h1,
+  .admin-intro h1 {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   .signal-panel {
+    width: 100%;
+    min-width: 0;
     min-height: 220px;
-    max-width: 520px;
+    max-width: min(100%, 520px);
   }
 
   .table-header {
@@ -3645,7 +3658,33 @@ html[data-theme="convex"] .metric-info-trigger[aria-expanded="true"] {
   }
 
   .hero h1 {
-    font-size: clamp(44px, 12vw, 62px);
+    /* 12vw still overflows a 390px screen once the headline is weight 900. */
+    font-size: clamp(36px, 10vw, 58px);
+    overflow-wrap: break-word;
+  }
+
+  /* The rolling-signal count is 76px at every width. On a phone that makes
+     the card taller than the heading and pushes the board under the browser
+     chrome. Hug the content instead. */
+  .signal-panel {
+    min-height: 0;
+    padding: 20px 18px 16px;
+  }
+
+  .signal-panel strong {
+    font-size: clamp(52px, 14vw, 72px);
+  }
+
+  .signal-meta {
+    margin-top: 16px;
+    padding-top: 12px;
+  }
+
+  .leaderboard-table,
+  .table-row,
+  .board-shell {
+    max-width: 100%;
+    min-width: 0;
   }
 
   .board-heading,
@@ -6186,18 +6225,47 @@ html[data-theme="convex"] .site-footer .cursor-logomark {
 
   html[data-theme="convex"] .hero {
     min-height: auto;
-    padding-top: 48px;
-    padding-bottom: 76px;
-    background-size: auto 100px;
+    padding-top: 28px;
+    /* Room for the racing lines under the card, without burying the board
+       kicker in the mobile browser toolbar. */
+    padding-bottom: 40px;
+    background-size: auto 72px;
+  }
+
+  html[data-theme="convex"] .hero-copy {
+    container-type: inline-size;
   }
 
   html[data-theme="convex"] .hero h1 {
-    font-size: clamp(46px, 14vw, 66px);
+    /* LEADERBOARD is the longest shipped word. 11.2cqi fits Neue Haas
+       Grotesk Display Black inside the padded column; vw covers browsers
+       without container query units. break-word only kicks in for a longer
+       custom board name. */
+    font-size: clamp(32px, 9.6vw, 66px);
+    font-size: clamp(32px, 11.2cqi, 66px);
+    line-height: 0.92;
+    overflow-wrap: break-word;
+  }
+
+  html[data-theme="convex"] .signal-panel {
+    min-height: 0;
+    padding: 20px 18px 16px;
   }
 
   html[data-theme="convex"] .board-shell {
-    width: calc(100% - (var(--page-gutter) * 2));
-    padding-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    padding: 16px var(--page-gutter) 72px;
+  }
+
+  html[data-theme="convex"] .board-toolbar .board-kicker {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  html[data-theme="convex"] .board-toolbar .board-kicker-label {
+    max-width: 100%;
+    white-space: normal;
   }
 
   html[data-theme="convex"] .editorial-hero {
