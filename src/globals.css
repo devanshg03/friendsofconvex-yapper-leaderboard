@@ -6232,9 +6232,14 @@ html[data-theme="convex"] .site-footer .cursor-logomark {
 
   html[data-theme="convex"] .hero h1 {
     font-size: clamp(32px, 9.6vw, 66px);
-    font-size: clamp(32px, 11.2cqi, 66px);
     line-height: 0.92;
     overflow-wrap: break-word;
+  }
+
+  @supports (font-size: 1cqi) {
+    html[data-theme="convex"] .hero h1 {
+      font-size: clamp(32px, 11.2cqi, 66px);
+    }
   }
 
   html[data-theme="convex"] .signal-panel {
@@ -6244,18 +6249,15 @@ html[data-theme="convex"] .site-footer .cursor-logomark {
 
   html[data-theme="convex"] .board-shell {
     width: 100%;
-    max-width: 100%;
     padding: 16px var(--page-gutter) 72px;
   }
 
   html[data-theme="convex"] .board-toolbar .board-kicker {
     width: 100%;
-    max-width: 100%;
   }
 
   html[data-theme="convex"] .board-toolbar .board-kicker-label {
     max-width: 100%;
-    white-space: normal;
   }
 
   html[data-theme="convex"] .editorial-hero {
