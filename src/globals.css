@@ -3658,13 +3658,10 @@ html[data-theme="convex"] .metric-info-trigger[aria-expanded="true"] {
   }
 
   .hero h1 {
-    /* At weight 900, 12vw overflows a 390px screen. */
     font-size: clamp(36px, 10vw, 58px);
     overflow-wrap: break-word;
   }
 
-  /* The count is 76px at every width. On a phone that card is taller than
-     the heading and pushes the board under the browser chrome. */
   .signal-panel {
     min-height: 0;
     padding: 20px 18px 16px;
@@ -6225,8 +6222,6 @@ html[data-theme="convex"] .site-footer .cursor-logomark {
   html[data-theme="convex"] .hero {
     min-height: auto;
     padding-top: 28px;
-    /* Keeps the racing lines visible under the card, and keeps the board
-       kicker above the mobile browser toolbar. */
     padding-bottom: 40px;
     background-size: auto 72px;
   }
@@ -6236,9 +6231,6 @@ html[data-theme="convex"] .site-footer .cursor-logomark {
   }
 
   html[data-theme="convex"] .hero h1 {
-    /* LEADERBOARD is the longest shipped word. 11.2cqi fits Neue Haas
-       Grotesk Display Black in the padded column. The vw size is for browsers
-       without container query units. A longer custom board name wraps. */
     font-size: clamp(32px, 9.6vw, 66px);
     font-size: clamp(32px, 11.2cqi, 66px);
     line-height: 0.92;
